@@ -1,0 +1,15 @@
+apiVersion: "cluster.kurl.sh/v1beta1"
+kind: "Installer"
+metadata: 
+  name: "latest"
+spec: 
+  kubernetes: 
+    version: "1.24.x"
+  weave: 
+    version: "2.6.x"
+  prometheus: 
+    version: "0.58.x"
+  registry: 
+    version: "2.8.x"
+  containerd: 
+    version: "1.6.x"

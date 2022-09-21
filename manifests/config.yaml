@@ -1,0 +1,18 @@
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: imgctrl-config
+spec:
+  groups:
+    - name: cert
+      title: Image Controller Certificate
+      description: These certificate to be used
+      items:
+      - name: tls_private_key_file
+        required: true
+        title: Private Key
+        type: file
+      - name: tls_public_key_file
+        required: true
+        title: Public Key
+        type: file

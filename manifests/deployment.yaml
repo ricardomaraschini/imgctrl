@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imgctrl
+  labels:
+    app: imgctrl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: imgctrl
+  template:
+    metadata:
+      labels:
+        app: imgctrl
+    spec:
+      serviceAccountName: imgctrl
+      containers:
+      - name: imgctrl
+        image: ghcr.io/shipwright-io/imgctrl:latest
+        imagePullPolicy: Always
+        volumeMounts:
+          - mountPath: "/tmp/k8s-webhook-server/serving-certs"
+            name: certs
+            readOnly: true
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      volumes:
+      - name: certs
+        secret:
+          secretName: certs
