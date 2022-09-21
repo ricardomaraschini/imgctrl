@@ -3,6 +3,13 @@ kind: Application
 metadata:
   name: app
 spec:
+  graphs:
+    - title: Imports
+      query: 'increase(imgctrl_import_success[3m])'
+    - title: Import failures
+      query: 'increase(imgctrl_import_failures[3m])'
+    - title: Mirror image average time
+      query: 'rate(imgctrl_mirror_latency_sum[3m])/rate(imgctrl_mirror_latency_count[3m])'
   descriptor:
     links:
     - description: Open License App

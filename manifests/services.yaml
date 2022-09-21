@@ -27,6 +27,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: metrics
+  labels:
+    app: imgctrl
 spec:
   selector:
     app: imgctrl
@@ -34,6 +36,7 @@ spec:
     - protocol: TCP
       port: 8090
       targetPort: 8090
+      name: metrics
 ---
 apiVersion: v1
 kind: Service
