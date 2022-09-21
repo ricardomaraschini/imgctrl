@@ -5,11 +5,11 @@ metadata:
 spec:
   graphs:
     - title: Imports
-      query: 'increase(imgctrl_import_success[3m])'
-    - title: Import failures
-      query: 'increase(imgctrl_import_failures[3m])'
-    - title: Mirror image average time
-      query: 'rate(imgctrl_mirror_latency_sum[3m])/rate(imgctrl_mirror_latency_count[3m])'
+      queries:
+        - query: increase(imgctrl_import_success[2m])
+          legend: Success
+        - query: increase(imgctrl_import_failures[2m])
+          legend: Failures
   descriptor:
     links:
     - description: Open License App
