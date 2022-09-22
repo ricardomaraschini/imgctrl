@@ -6,10 +6,13 @@ spec:
   graphs:
     - title: Imports
       queries:
-        - query: increase(imgctrl_import_success[2m])
+        - query: sum(increase(imgctrl_import_success[2m]))
           legend: Success
-        - query: increase(imgctrl_import_failures[2m])
+        - query: sum(increase(imgctrl_import_failures[2m]))
           legend: Failures
+    - title: Mirror latency
+      query: sum(rate(imgctrl_mirror_latency_sum[1m])/rate(imgctrl_mirror_latency_count[1m]) > 0)
+      legend: Image mirror latency (s)
   descriptor:
     links:
     - description: Open License App
